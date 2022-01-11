@@ -1202,7 +1202,7 @@ int main(int argc, char* argv[])
 
   // Define parameters for brute search
   param_Aff.rigid_search.mode = RANDOM_NORMAL_ROTATION;
-  param_Aff.rigid_search.sigma_angle = 180;
+  param_Aff.rigid_search.sigma_angle = 5;
   param_Aff.rigid_search.iterations = stoi(iteration);
   param_Aff.rigid_search.sigma_xyz = offset;
 
