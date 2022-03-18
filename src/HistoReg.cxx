@@ -634,6 +634,7 @@ int main(int argc, char* argv[])
   string iteration = "5000";
   string s1 = "6";
   string s2 = "5";
+  string threads = "0";
 
   // executables
   string c2d_executable = getExecutablePath() + "/c2d";
@@ -776,6 +777,15 @@ int main(int argc, char* argv[])
       }
       if ((arg == "-P") || (arg == "--PNG")) {
         Flag_PNGs = 1;
+      }
+      if ((arg == "--threads")) {
+        if (i + 1 < argc) { // Make sure we aren't at the end of argv!
+          threads = argv[++i];
+        }
+        else { // Uh-oh, there was no argument to the destination option.
+          cerr << "--threads option requires one argument." << '\n';
+          return 1;
+        }
       }
     }
   }
@@ -1181,6 +1191,8 @@ int main(int argc, char* argv[])
   // Define greedy parameters
   GreedyParameters param_Aff;
   GreedyParameters::SetToDefaults(param_Aff);
+
+  param_Aff.threads = stoi(threads);
 
   // Define mode and dimension
   param_Aff.mode = GreedyParameters::AFFINE;
